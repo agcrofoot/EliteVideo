@@ -1,56 +1,36 @@
 # EliteVideo Data Pipeline
 
-This project demonstrates a complete data pipeline for a fictional video rental store, **EliteVideo**. The pipeline uses Excel as the data source, Python for ETL (Extract, Transform, Load) operations, and SQLite as the relational database. The pipeline is designed to simulate real-world data handling and reporting processes typical in a data analyst or junior data engineering role.
+This project simulates a video rental store data pipeline using **Excel**, **Python**, and **SQLite**. It demonstrates how to extract, clean, and load structured data from multiple Excel sheets into a relational database for analysis.
 
 ---
 
-## Project Overview
+## Tools Used
 
-**Objective**:  
-To extract and clean transactional and reference data from multiple Excel worksheets, load them into a normalized SQLite database, and enable future data analysis and visualization.
-
----
-
-## Tools & Technologies
-
-- **Python**: Data cleaning and ETL scripting
-- **Pandas**: Excel data manipulation
-- **SQLite**: Lightweight relational database for storage and querying
-- **Excel**: Raw data source (multi-tab workbook)
-- **VS Code**: Development environment
+- **Python** for scripting (ETL)
+- **Pandas** for data cleaning
+- **SQLite** for storing structured data
+- **Excel** as the data source
 
 ---
 
-## Schema Overview
+## What It Does
 
-The database is structured in a normalized relational schema, including:
-
-- **Customer**
-- **Movie**
-- **Rental**
-- **DetailRental** (junction table linking rentals to movies)
-- **Staff**
-- **Store**
-- *(More depending on provided Excel tabs)*
-
-All tables are created with appropriate primary keys and foreign key constraints to maintain data integrity.
+- Loads data from multiple Excel tabs (e.g., customers, rentals, movies)
+- Cleans and standardizes column names
+- Removes duplicates and handles missing values
+- Creates a normalized SQLite database with primary/foreign key constraints
+- Inserts cleaned data into appropriate tables
 
 ---
 
-## Pipeline Workflow
+## Setup
 
-1. **Load Excel Workbook**
-   - Source file contains multiple worksheets (e.g., `Customer`, `Movie`, `Rental`, `DetailRental`).
-   - Each sheet is loaded into a pandas DataFrame.
+1. Install dependencies:
 
-2. **Data Cleaning**
-   - Column headers are stripped of extra spaces and standardized to lowercase with underscores.
-   - Null values are handled to ensure compatibility with SQLite.
-   - Duplicates are removed.
-
-3. **Database Creation**
-   - A new SQLite database (`elitevideo.db`) is created if not already present.
-   - Tables are created using `CREATE TABLE` statements with appropriate datatypes and constraints.
-
-4. **Data Insertion**
-   - Cleaned DataFrames are iterated through and inserted into the database using parameterized SQL queries.
+   ```bash
+   pip install pandas openpyxl
+2. Run the ETL script
+   
+   ```bash
+   python scripts/load_data.py
+3. Open movies.db in SQLite or DBrowser.
